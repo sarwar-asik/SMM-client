@@ -28,11 +28,15 @@ const Navbar = () => {
     },
     {
       name: "Log In",
-      link: "",
+      link: "/routes/login",
     },
     {
       name: "Add Blogs",
       link: "/routes/AddBlogs",
+    },
+    {
+      name: "Edit Blogs",
+      link: "/routes/EditBlogs",
     },
   ];
 
