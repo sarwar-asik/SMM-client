@@ -40,11 +40,11 @@ const Navbar = () => {
     },
   ];
 
-  if(!user){
-    myItems.pop()
-    myItems.pop()
+  if (!user) {
+    myItems.pop();
+    myItems.pop();
   }
-
+  
   return (
     <div className="bg-[#85CDFD] rounded-b-sm">
       <div className=" py-5 mx-auto px-5">
@@ -70,7 +70,7 @@ const Navbar = () => {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg>
-            
+
             <span className="ml-2 text-xl lg:text-xl sm:text-sm font-bold tracking-wide text-gray-100 uppercase">
               Abdullah
             </span>
@@ -173,7 +173,6 @@ const Navbar = () => {
                           </Link>
                         </li>
                       ))}
-                   
                     </ul>
                   </nav>
                 </div>
