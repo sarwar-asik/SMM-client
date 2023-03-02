@@ -76,6 +76,17 @@ const AddBlogs = () => {
           </section>
           <div className="mt-5">
             <label htmlFor="" className="text-slate-700 my-2 ">
+              Select Banner
+            </label>
+            <input
+              type="file"
+              className="w-full rounded px-5 mt-2 outline-none py-3 bg-slate-300"
+              {...register("img")}
+              required
+            />
+          </div>
+          <div className="mt-5">
+            <label htmlFor="" className="text-slate-700 my-2 ">
               Blog Link
             </label>
             <input
