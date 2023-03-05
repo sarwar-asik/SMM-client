@@ -82,7 +82,7 @@ const Navbar = () => {
             </svg>
 
             <span className="ml-2 text-xl lg:text-xl sm:text-sm font-bold tracking-wide text-gray-100 uppercase">
-              Muntasir Mihan
+            Shah Muntacher Hossain
             </span>
           </Link>
           <ul className="items-center hidden space-x-8 lg:flex">
@@ -153,7 +153,7 @@ const Navbar = () => {
                           <rect x="14" y="11" width="7" height="12" />
                         </svg>
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase ">
-                          Muntasir Mihan
+                        Shah Muntacher Hossain 
                         </span>
                       </Link>
                     </div>

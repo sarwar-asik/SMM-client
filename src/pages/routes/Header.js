@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import banner  from "../../assets/mihanBanner.jpg"
@@ -13,7 +14,7 @@ const Header = () => {
                 </p>
               </div>
               <h2 className="max-w-lg font-sans text-3xl font-bold tracking-tight text-[#49a5e2] sm:text-4xl sm:leading-none">
-                Shah Muntasir Mihan
+              Shah Muntacher Hossain             
               </h2>
               <p className="text-[18px] font-[500]  text-[#0275c2] font-mono rounded-full bg-teal-accent-400 mt-2 mb-1">
                   Social Worker 
@@ -50,9 +51,10 @@ const Header = () => {
             </div>
           </div>
           <div className="relative lg:w-1/">
-         
 
-            <img className='h-[450px] w-[480px]' src={`https://scontent.fdac139-1.fna.fbcdn.net/v/t1.15752-9/334915891_917306799505823_723871664171805630_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeHa9CWUXdOIX6kCUcKnNRp5ohR7ilUus0aiFHuKVS6zRsFZ6BRQnBo9MPexKtpeLJZ_QcscJeAex6ECNZywP-75&_nc_ohc=XamQnZYNrlQAX-ViRRa&_nc_ht=scontent.fdac139-1.fna&oh=03_AdRczKNWKDp1kAk_n68q3QT2HbovKNshfHBZ2XMiJlmFLA&oe=642BB89A`} alt="mihanIm" />
+          <Image src={banner} className='h-[450px] w-[480px]'   height={200}  width={480} alt="My Image"/>
+
+            {/* <img className='h-[450px] w-[480px]' src={`https://scontent.fdac139-1.fna.fbcdn.net/v/t1.15752-9/334915891_917306799505823_723871664171805630_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeHa9CWUXdOIX6kCUcKnNRp5ohR7ilUus0aiFHuKVS6zRsFZ6BRQnBo9MPexKtpeLJZ_QcscJeAex6ECNZywP-75&_nc_ohc=XamQnZYNrlQAX-ViRRa&_nc_ht=scontent.fdac139-1.fna&oh=03_AdRczKNWKDp1kAk_n68q3QT2HbovKNshfHBZ2XMiJlmFLA&oe=642BB89A`} alt="mihanIm" /> */}
 
           </div>
         </div>
