@@ -1,4 +1,5 @@
-import React from "react";
+import Image from "next/image";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -10,9 +11,22 @@ const AddBlogs = () => {
     formState: { errors },
   } = useForm();
 
+
+  const [imgbb ,setimgBb] = useState("")
+
+  // const handleBbChange =e =>{
+  //   const photo = e.files[0]
+  //   console.log(e,"and",photo);
+
+  // }
+
   const onSubmit = (data) => {
     const photo = data.img[0];
+    getImgLink(data,photo)
     // console.log( photo);
+  };
+
+  const getImgLink = (data,photo) =>{
     const formData = new FormData();
     formData.append("image", photo);
     // console.log(formData, "anddd", photo);
@@ -28,27 +42,32 @@ const AddBlogs = () => {
         const image = imageData.data.url;
         data["img"] = image;
         postBlogs(data);
+
       });
 
-    const postBlogs = (blogsData) => {
-      console.log(blogsData, "from post");
-      fetch("http://localhost:9000/blogs/addBlogs", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(blogsData),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result) {
-            console.log(result);
-            reset();
-            Swal.fire("sent", "", "success");
-          }
-        });
-    };
+  }
+
+  const postBlogs = (blogsData) => {
+    console.log(blogsData, "from post");
+    fetch("http://localhost:9000/blogs/addBlogs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(blogsData),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result) {
+          console.log(result);
+          reset();
+          Swal.fire("sent", "", "success");
+        }
+      });
   };
+
+
+
 
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -110,15 +129,20 @@ const AddBlogs = () => {
             </div>
           </section>
           <div className="mt-5">
+
+
             <label htmlFor="" className="text-slate-700 my-2 ">
               Select Banner
             </label>
             <input
               type="file"
+              name="img"
+            
               className="w-full rounded px-5 mt-2 outline-none py-3 bg-slate-300"
               {...register("img")}
               required
             />
+            {/* <Image src={imgbb} height={80} width={50} alt="imgbb"  /> */}
           </div>
           <div className="mt-5">
             <label htmlFor="" className="text-slate-700 my-2 ">
@@ -134,14 +158,14 @@ const AddBlogs = () => {
           </div>
           <div className="mt-5">
             <label htmlFor="" className="text-slate-700 my-2 ">
-              Your Message
+              Blogs Detail
             </label>
             <textarea
-              type="email"
+              type="text"
               className="w-full rounded px-5 mt-2 outline-none py-3 bg-slate-300"
-              {...register("message")}
+              {...register("detail")}
               required
-              placeholder="Your Message"
+              placeholder="Blog Details"
             />
           </div>
           <div className="">

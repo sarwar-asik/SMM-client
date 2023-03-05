@@ -12,25 +12,25 @@ const Header = () => {
                   Introduction
                 </p>
               </div>
-              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-[#49a5e2] sm:text-4xl sm:leading-none">
-                Abdullah Ahmed
+              <h2 className="max-w-lg font-sans text-3xl font-bold tracking-tight text-[#49a5e2] sm:text-4xl sm:leading-none">
+                Shah Muntasir Mihan
               </h2>
-              <p className="text-base text-gray-700 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae. explicabo.
+              <p className="text-[18px] font-[500]  text-[#0275c2] font-mono rounded-full bg-teal-accent-400 mt-2 mb-1">
+                  Social Worker 
+                </p>
+              <p className="text-base text-gray-700 md:text-lg mt-3">
+              A young Energetic man have a clear,logical mind with a practical approach to problem solving and a drive to see things. 
               </p>
             </div>
 
             
             <div className="flex flex-col items-center md:flex-row gap-3">
-            <Link
-                href="/"
-                aria-label=""
-                className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold "
-              >
-                My CV
-              </Link>
+          
+              <Link href="https://www.linkedin.com/in/shah-muntacher-hossain-mihan-7120541b5/" legacyBehavior>
+                  <a target="_blank" rel="noopener noreferrer"  className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold ">
+                    My CV
+                  </a >
+                  </Link>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center w-full h-12 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
@@ -40,7 +40,7 @@ const Header = () => {
 
              <section className='flex gap-3'>
               <Link
-                href="/"
+                href="/routes/Header"
                 aria-label=""
                 className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold "
               >
