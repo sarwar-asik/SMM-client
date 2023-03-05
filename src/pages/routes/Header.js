@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-
+import banner  from "../../assets/mihanBanner.jpg"
 const Header = () => {
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -49,10 +49,10 @@ const Header = () => {
              </section>
             </div>
           </div>
-          <div className="relative lg:w-1/2">
+          <div className="relative lg:w-1/">
          
 
-            <img src="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="mihanImg" />
+            <img className='h-[450px] w-[480px]' src={`https://scontent.fdac139-1.fna.fbcdn.net/v/t1.15752-9/334915891_917306799505823_723871664171805630_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeHa9CWUXdOIX6kCUcKnNRp5ohR7ilUus0aiFHuKVS6zRsFZ6BRQnBo9MPexKtpeLJZ_QcscJeAex6ECNZywP-75&_nc_ohc=XamQnZYNrlQAX-ViRRa&_nc_ht=scontent.fdac139-1.fna&oh=03_AdRczKNWKDp1kAk_n68q3QT2HbovKNshfHBZ2XMiJlmFLA&oe=642BB89A`} alt="mihanIm" />
 
           </div>
         </div>

@@ -1,5 +1,6 @@
+import { AuthContext } from "authProvider/ProviderContext";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -12,13 +13,14 @@ const AddBlogs = () => {
   } = useForm();
 
 
-  const [imgbb ,setimgBb] = useState("")
+  // const [imgbb ,setimgBb] = useState("")
 
   // const handleBbChange =e =>{
   //   const photo = e.files[0]
   //   console.log(e,"and",photo);
 
   // }
+  const {user} = useContext(AuthContext)
 
   const onSubmit = (data) => {
     const photo = data.img[0];
@@ -49,7 +51,7 @@ const AddBlogs = () => {
 
   const postBlogs = (blogsData) => {
     console.log(blogsData, "from post");
-    fetch("http://localhost:9000/blogs/addBlogs", {
+    fetch(`http://localhost:9000/blogs/addBlogs?user=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -61,7 +63,7 @@ const AddBlogs = () => {
         if (result) {
           console.log(result);
           reset();
-          Swal.fire("sent", "", "success");
+          Swal.fire("Added Blogs", "", "success");
         }
       });
   };

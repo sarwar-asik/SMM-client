@@ -1,5 +1,6 @@
 import { AuthContext } from "authProvider/ProviderContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -13,20 +14,24 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
 
 const [error,setError] = useState("")
+
   const handleLogin = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log(email,password);
-    login().then(result =>{
-      console.log(result.user,"from firebase");
-      Swal.fire("sent", "", "success");
+    // console.log(email,password);
+    login(email,password).then(result =>{
+      // console.log(result.user,"from firebase");
+      router.push("/")
+      Swal.fire("Success", "", "success");
+
   })
   .catch(err =>setError(err.message))
-
-
   }
+
+
 
 
   return (
@@ -119,10 +124,6 @@ const [error,setError] = useState("")
                     </div>
                   </div>
                   <p className="text-xs text-red-600">{error}</p>
-                  <p>
-                   <span> DId not create account ? </span>
-                <Link href="/routes/SIgnup" className="text-sm font-mono">Sign Up .....</Link>
-                  </p>
                   <div>
                     <input
                       type="submit"

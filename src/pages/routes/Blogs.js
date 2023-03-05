@@ -66,9 +66,9 @@ if(blogs.length > 3){
   return (
     <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 text-center">
       <h2 className="mt-1 text-3xl font-bold font-serif">MY Latest Blogs</h2>
-      <p className="text-slate-700 mt-1 mb-4">
-        There are some latest blogs of mine . You can Explore my blogs from here
-        .
+      <p className="text-slate-700 mt-1 mb-4 font-mono">
+        There are some latest blogs of mine . You can Explore my blogs from here.
+        My new blog will publishe soon
       </p>
 
 {blogs.length >0 ?

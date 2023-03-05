@@ -1,5 +1,6 @@
 import { AuthContext } from "authProvider/ProviderContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -11,23 +12,50 @@ const [error,setError] = useState("")
   const {
     register,
     handleSubmit,
+    reset,
+
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
+
+
 
   const handleLogin = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log(email,password);
+    // console.log(email,password);
+    const user = {name:"Muntasir Mihan",email,password,role:"admin"}
 
     createUser(email,password)
     .then(result =>{
         console.log(result.user,"from firebase");
-        Swal.fire("sent", "", "success");
+        addUser(user)
+        reset()
     })
     .catch(err =>setError(err.message))
 
   }
 
+const addUser  =(user) =>{
+fetch("http://localhost:9000/users/addUser",{
+  method:"POST",
+  headers:{
+    "content-type":"application/json",
+  },
+  body:JSON.stringify(user)
+})
+.then(res =>res.json())
+.then(result =>{
+  if(result){
+    Swal.fire("Sign Up", "", "success");
+    router.push("/")
+  }
+  else{
+    setError(result.error)
+  }
+})
+}
 
   return (
     <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">

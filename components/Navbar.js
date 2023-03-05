@@ -1,14 +1,18 @@
 import { AuthContext } from "authProvider/ProviderContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 // import "../../css/customs.css"
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   console.log(user, "///////////");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
-  const NavItem = <React.Fragment></React.Fragment>;
+  // const NavItem = <React.Fragment></React.Fragment>
+
+
   const myItems = [
     {
       name: "Home",
@@ -44,7 +48,13 @@ const Navbar = () => {
     myItems.pop();
     myItems.pop();
   }
-  
+
+  const handleLogout  =()=>{
+    logout()
+    router.push("/")
+
+  }
+
   return (
     <div className="bg-[#85CDFD] rounded-b-sm">
       <div className=" py-5 mx-auto px-5">
@@ -72,7 +82,7 @@ const Navbar = () => {
             </svg>
 
             <span className="ml-2 text-xl lg:text-xl sm:text-sm font-bold tracking-wide text-gray-100 uppercase">
-              Abdullah
+              Muntasir Mihan
             </span>
           </Link>
           <ul className="items-center hidden space-x-8 lg:flex">
@@ -88,6 +98,11 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+            {user && (
+              <li onClick={handleLogout} className="bg-red-400 cursor-pointer p-2 font-semibold  text-white rounded">
+                log Out
+              </li>
+            )}
           </ul>
           <div className="lg:hidden">
             <button
@@ -138,7 +153,7 @@ const Navbar = () => {
                           <rect x="14" y="11" width="7" height="12" />
                         </svg>
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase ">
-                          Abdullah
+                          Muntasir Mihan
                         </span>
                       </Link>
                     </div>
@@ -173,6 +188,12 @@ const Navbar = () => {
                           </Link>
                         </li>
                       ))}
+
+                      {user && (
+                        <li onClick={handleLogout} className="bg-red-400 cursor-pointer p-2 font-semibold w-1/2 text-white rounded">
+                          log Out
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
+import { AuthContext } from "authProvider/ProviderContext";
 
 const EditBlogs = ({ blogs: initialBlogs }) => {
   const [blogs, setBlogs] = useState(initialBlogs);
   const [loading, setLoading] = useState(false);
+  const {user} = useContext(AuthContext)
 
   const handleRefresh = async () => {
     setLoading(true);
@@ -22,7 +24,7 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
   const deleteBlog = (data) => {
     console.log(data);
 
-    fetch(`http://localhost:9000/blogs/deleteBlog`, {
+    fetch(`http://localhost:9000/blogs/deleteBlog?user=${user?.email}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -39,12 +41,13 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
       });
   };
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <h2 className="text-4xl font-bold font-serif my-2  mx-auto w-[100%] text-center">
+    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
+      <h2 className="text-4xl font-bold font-serif mt-2  mx-auto w-[100%] text-center">
         {" "}
         Your Blogs{" "}
       </h2>
-      <main className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-3 ">
+      <p className="text-slate-600">You delete any blog from the server</p>
+      <main className="grid grid-cols-1  mt-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-3 ">
         {blogs?.map((blog, i) => {
           const { name, img, time, publisher, link, detail, date } = blog;
           return (

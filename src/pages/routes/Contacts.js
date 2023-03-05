@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -21,6 +22,7 @@ const Contacts = () => {
           and Contact form . I am glad to your to your message
         </p>
         <div className="flex gap-5">
+        <Link href="https://www.facebook.com/shah.muntachir" target="_blanck">
           <Image
             height={30}
             width={30}
@@ -28,6 +30,8 @@ const Contacts = () => {
             src={fb}
             alt="facebook"
           />
+          </Link>
+          <Link href="https://www.linkedin.com/in/shah-muntacher-hossain-mihan-7120541b5/" target="_blanck">
           <Image
             height={30}
             width={30}
@@ -35,6 +39,7 @@ const Contacts = () => {
             src={linkedIn}
             alt="linkedIn"
           />
+          </Link>
 
           <Image
             height={30}
