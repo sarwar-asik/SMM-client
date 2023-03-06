@@ -3,6 +3,7 @@ import { Menu } from "@headlessui/react";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { AuthContext } from "authProvider/ProviderContext";
+import main_api from "../main_api";
 
 const EditBlogs = ({ blogs: initialBlogs }) => {
   const [blogs, setBlogs] = useState(initialBlogs);
@@ -11,7 +12,7 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
 
   const handleRefresh = async () => {
     setLoading(true);
-    const res = await fetch(`http://localhost:9000/blogs/blogs`);
+    const res = await fetch(`${main_api}/blogs/blogs`);
     const newBlogs = await res.json();
     setBlogs(newBlogs);
     setLoading(false);
@@ -24,7 +25,7 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
   const deleteBlog = (data) => {
     console.log(data);
 
-    fetch(`http://localhost:9000/blogs/deleteBlog?user=${user?.email}`, {
+    fetch(`${main_api}/blogs/deleteBlog?user=${user?.email}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -90,7 +91,7 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:9000/blogs/blogs`);
+  const res = await fetch(`${main_api}/blogs/blogs`);
   const blogs = await res.json();
   // Pass data to the page via props
   return { props: { blogs } };

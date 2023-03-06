@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import main_api from "../main_api";
 
 const Blogs = ({ homeblogs }) => {
   // const blo = [
@@ -50,31 +51,34 @@ const Blogs = ({ homeblogs }) => {
   //   },
   // ];
 
-  let [blogs,setBlogs] = useState([])
-  
- useEffect(()=>{
-   fetch(`http://localhost:9000/blogs/blogs`)
-.then(res=>res.json())
-.then( blogs => setBlogs(blogs))
-},[])
+  let [blogs, setBlogs] = useState([]);
 
-console.log(blogs, "from Blogs.js");
-if(blogs.length > 3){
-  blogs = blogs.splice(1, 3)
-}
+  useEffect(() => {
+    fetch(`${main_api}/blogs/blogs`)
+      .then((res) => res.json())
+      .then((blogs) => setBlogs(blogs));
+  }, []);
+
+  console.log(blogs, "from Blogs.js");
+  if (blogs.length > 3) {
+    blogs = blogs.splice(1, 3);
+  }
 
   return (
     <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 text-center">
       <h2 className="mt-1 text-3xl font-bold font-serif">MY Latest Blogs</h2>
       <p className="text-slate-700 mt-1 mb-4 font-mono">
-        There are some latest blogs of mine . You can Explore my blogs from here.
-        My new blog will publishe soon
+        There are some latest blogs of mine . You can Explore my blogs from
+        here. My new blog will publishe soon
       </p>
 
-{blogs.length >0 ?
-""
-: <div className="mt-1 text-xl font-bold font-serif text-center">coming soon my latest blogs</div>
-}
+      {blogs.length > 0 ? (
+        ""
+      ) : (
+        <div className="mt-1 text-xl font-bold font-serif text-center">
+          coming soon my latest blogs
+        </div>
+      )}
 
       <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
         {/*  */}
@@ -114,42 +118,41 @@ if(blogs.length > 3){
                     See Details
                   </button>
                   <Link href={blog?.link} legacyBehavior>
-                  
-                  <a target="_blank" rel="noopener noreferrer"  className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold ">
-                    Visit
-                  </a >
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold "
+                    >
+                      Visit
+                    </a>
                   </Link>
                 </section>
               </div>
             </div>
-          )
-        })
-        
-      }
+          );
+        })}
       </div>
 
-
-     {
-      blogs.length > 3 &&
-      <section className="py-5 shadow-2xl w-[30%] mx-auto">
-      <Link
-        href="/routes/allBlogs"
-        className="bg-slate-700 text-center mx-auto sm:px-[36px] lg:px-[46px] mt-5 py-3 sm:text-[15px] lg:text-[18px] rounded text-white font-bold "
-      >
-        See All
-      </Link>
-    </section>
-     }
+      {blogs.length > 3 && (
+        <section className="py-5 shadow-2xl w-[30%] mx-auto">
+          <Link
+            href="/routes/allBlogs"
+            className="bg-slate-700 text-center mx-auto sm:px-[36px] lg:px-[46px] mt-5 py-3 sm:text-[15px] lg:text-[18px] rounded text-white font-bold "
+          >
+            See All
+          </Link>
+        </section>
+      )}
     </div>
   );
 };
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:9000/blogs/blogs`);
+  const res = await fetch(`${main_api}/blogs/blogs`);
   const homeblogs = await res.json();
   // Pass data to the page via props
-  return { props: { homeblogs} };
+  return { props: { homeblogs } };
 }
 
 export default Blogs;

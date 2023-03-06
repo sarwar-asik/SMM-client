@@ -4,65 +4,61 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import main_api from "../main_api";
 
 const SignUp = () => {
-  const {createUser} = useContext(AuthContext)
-const [error,setError] = useState("")
+  const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
   // console.log(createUser);
   const {
     register,
     handleSubmit,
     reset,
-
     formState: { errors },
   } = useForm();
 
   const router = useRouter();
 
-
-
   const handleLogin = (data) => {
     const email = data.email;
     const password = data.password;
     // console.log(email,password);
-    const user = {name:"Muntasir Mihan",email,password,role:"admin"}
+    const user = { name: "Muntasir Mihan", email, password, role: "admin" };
 
-    createUser(email,password)
-    .then(result =>{
-        console.log(result.user,"from firebase");
-        addUser(user)
-        reset()
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user, "from firebase");
+        addUser(user);
+        reset();
+      })
+      .catch((err) => setError(err.message));
+  };
+
+  const addUser = (user) => {
+    fetch(`${main_api}/users/addUser`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-    .catch(err =>setError(err.message))
-
-  }
-
-const addUser  =(user) =>{
-fetch("http://localhost:9000/users/addUser",{
-  method:"POST",
-  headers:{
-    "content-type":"application/json",
-  },
-  body:JSON.stringify(user)
-})
-.then(res =>res.json())
-.then(result =>{
-  if(result){
-    Swal.fire("Sign Up", "", "success");
-    router.push("/")
-  }
-  else{
-    setError(result.error)
-  }
-})
-}
+      .then((res) => res.json())
+      .then((result) => {
+        if (result) {
+          Swal.fire("Sign Up", "", "success");
+          router.push("/");
+        } else {
+          setError(result.error);
+        }
+      });
+  };
 
   return (
     <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-            Sign Up 
+            Sign Up
           </h2>
           <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">
             This route is for Admin .Where Admin can control the data and others
@@ -80,7 +76,7 @@ fetch("http://localhost:9000/users/addUser",{
                       for=""
                       className="text-base font-medium text-gray-900"
                     >
-                      Email address  
+                      Email address
                     </label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -115,7 +111,6 @@ fetch("http://localhost:9000/users/addUser",{
                       for=""
                       className="text-base font-medium text-gray-900"
                     >
-                   
                       Password
                     </label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
@@ -140,7 +135,6 @@ fetch("http://localhost:9000/users/addUser",{
                         {...register("password")}
                         type="password"
                         name="password"
-            
                         placeholder="Enter your password"
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                       />
@@ -148,8 +142,10 @@ fetch("http://localhost:9000/users/addUser",{
                   </div>
                   <p className="text-xs text-red-600">{error}</p>
                   <p>
-                   <span> Already Have account ? </span>
-                <Link href="/routes/login" className="text-sm font-mono">Log In .....</Link>
+                    <span> Already Have account ? </span>
+                    <Link href="/routes/login" className="text-sm font-mono">
+                      Log In .....
+                    </Link>
                   </p>
                   <div>
                     <input

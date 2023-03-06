@@ -1,6 +1,7 @@
 import { async } from "@firebase/util";
 import Link from "next/link";
 import React from "react";
+import main_api from "../main_api";
 
 const allProjects = ({ blogs }) => {
   const blo = [
@@ -114,7 +115,7 @@ const allProjects = ({ blogs }) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:9000/blogs/blogs`);
+  const res = await fetch(`${main_api}/blogs/blogs`);
   const blogs = await res.json();
   // Pass data to the page via props
   return { props: { blogs } };

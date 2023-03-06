@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import main_api from "../main_api";
 
 const AddBlogs = () => {
   const {
@@ -51,7 +52,7 @@ const AddBlogs = () => {
 
   const postBlogs = (blogsData) => {
     console.log(blogsData, "from post");
-    fetch(`http://localhost:9000/blogs/addBlogs?user=${user?.email}`, {
+    fetch(`${main_api}/blogs/addBlogs?user=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
