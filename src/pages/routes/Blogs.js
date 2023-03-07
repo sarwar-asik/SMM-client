@@ -61,7 +61,7 @@ const Blogs = ({ homeblogs }) => {
 
   console.log(blogs, "from Blogs.js");
   if (blogs.length > 3) {
-    blogs = blogs.splice(1, 3);
+    blogs = blogs.splice(3, 1);
   }
 
   return (
@@ -110,9 +110,9 @@ const Blogs = ({ homeblogs }) => {
                   aria-label="Article"
                   className="inline-block mb-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700"
                 >
-                  <p className="text-2xl font-bold leading-5">{blogs.name}</p>
+                  <p className="text-2xl font-bold leading-5">{blog.name}</p>
                 </Link>
-                <p className="mb-4  text-slate-600">{blog.detail}</p>
+                <p className="mb-4  text-slate-600">{blog.detail.length>84 ?blog.detail.slice(0,84)+"....":blog.detail }</p>
                 <section className="flex justify-between">
                   <button className="bg-[#41a3e5] px-5 py-2 text-[18px] rounded text-white font-bold ">
                     See Details
@@ -133,7 +133,7 @@ const Blogs = ({ homeblogs }) => {
         })}
       </div>
 
-      {blogs.length > 3 && (
+      {blogs.length >= 3 && (
         <section className="py-5 shadow-2xl w-[30%] mx-auto">
           <Link
             href="/routes/AllBlogs"
