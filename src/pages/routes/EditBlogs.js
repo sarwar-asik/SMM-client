@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { AuthContext } from "authProvider/ProviderContext";
 import main_api from "../main_api";
+import Image from "next/image";
 
 const EditBlogs = ({ blogs: initialBlogs }) => {
   const [blogs, setBlogs] = useState(initialBlogs);
@@ -23,7 +24,7 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
   }, [initialBlogs]);
 
   const deleteBlog = (data) => {
-    console.log(data);
+    // console.log(data);
 
     fetch(`${main_api}/blogs/deleteBlog?user=${user?.email}`, {
       method: "DELETE",
@@ -34,9 +35,12 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result) {
+        if (result.success) {
           console.log(result);
-          Swal.fire("deleted", "", "error");
+          Swal.fire("deleted", "", "success");
+        }
+        else{
+          Swal.fire(result.error, "", "error");
         }
         handleRefresh();
       });
@@ -60,7 +64,10 @@ const EditBlogs = ({ blogs: initialBlogs }) => {
                 <img
                   className="w-full lg:w-[200px] mx-auto  rounded-[3%]"
                   src={img}
-                  alt="img"
+                  // width={300}
+                  // height={300}
+
+                  alt="Blog Img"
                 />
               </figure>
               <section className="flex flex-col gap-2 w-[75%]">

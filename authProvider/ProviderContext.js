@@ -14,8 +14,7 @@ const ProviderContext = ({ children }) => {
   const auth = getAuth(authApp);
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
-  };
-
+  }
   const [user, setUser] = useState(null);
 
   const login = (email, password) => {

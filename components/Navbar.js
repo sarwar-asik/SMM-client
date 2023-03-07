@@ -6,7 +6,7 @@ import React, { useContext, useState } from "react";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user, "///////////");
+  // console.log(user, "///////////");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -52,7 +52,6 @@ const Navbar = () => {
   const handleLogout  =()=>{
     logout()
     router.push("/")
-
   }
 
   return (

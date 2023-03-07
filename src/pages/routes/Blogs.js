@@ -136,7 +136,7 @@ const Blogs = ({ homeblogs }) => {
       {blogs.length > 3 && (
         <section className="py-5 shadow-2xl w-[30%] mx-auto">
           <Link
-            href="/routes/allBlogs"
+            href="/routes/AllBlogs"
             className="bg-slate-700 text-center mx-auto sm:px-[36px] lg:px-[46px] mt-5 py-3 sm:text-[15px] lg:text-[18px] rounded text-white font-bold "
           >
             See All
